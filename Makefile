@@ -3,17 +3,25 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+         #
+#    By: almanuel <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/09/18 14:33:53 by marccarv          #+#    #+#              #
-#    Updated: 2024/09/20 19:22:35 by almanuel         ###   ########.fr        #
+#    Created: 2024/09/27 12:42:56 by almanuel          #+#    #+#              #
+#    Updated: 2024/09/27 12:49:29 by almanuel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-CC = cc 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -g
-SOURCE = main.c loop_create.c philo_init.c utils.c philo_rotine.c print_philo.c
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+SOURCE = 	src/main.c 		\
+		src/loop_create.c	\
+		src/philo_init.c	\
+		src/utils.c		\
+		src/philo_rotine.c	\
+		src/print_philo.c	\
+		src/error_argv.c	\
+		src/monitoring.c
+
 OBJC = $(SOURCE:.c=.o)
 
 all: $(NAME)
