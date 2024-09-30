@@ -12,6 +12,17 @@
 
 #include "../header/philosopher.h"
 
+int	philo_one(t_point *table)
+{
+	ft_sleep(table->t_to_die + 10);
+	if (table->val.x == 1)
+	{
+		pthread_mutex_unlock(table->reght_fork);
+		return (1);
+	}
+	return (0);
+}
+
 void	error_exit(const char *str)
 {
 	printf(BOLD RED "%s" RESERT, str);

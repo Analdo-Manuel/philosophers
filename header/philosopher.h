@@ -81,5 +81,6 @@ size_t			time_philo(size_t time);
 size_t			get_time_in_ms(void);
 
 int				parse_argv(int ac, char **av);
+int				philo_one(t_point *table);
 
 #endif
