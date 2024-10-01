@@ -17,10 +17,11 @@ SOURCE = 	src/main.c 		\
 		src/loop_create.c	\
 		src/philo_init.c	\
 		src/utils.c		\
-		src/philo_rotine.c	\
+		src/philo_rotine_one.c	\
 		src/print_philo.c	\
 		src/error_argv.c	\
-		src/monitoring.c
+		src/monitoring.c	\
+		src/philo_rotine_two.c
 
 OBJC = $(SOURCE:.c=.o)
 

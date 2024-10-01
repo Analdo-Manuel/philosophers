@@ -74,7 +74,8 @@ void			init_control(t_valuer *control, int ac, char **av);
 void			print_philo(char *str, t_point *table);
 void			*monitoring(void *arg);
 void			ft_sleep(size_t time);
-void			*rotina(void *arg);
+void			*rotina_impar(void *arg);
+void			*rotina_par(void *arg);
 
 size_t			check_int_max(size_t nbr);
 size_t			control(t_point	*table, size_t time);

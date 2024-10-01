@@ -25,8 +25,16 @@ void	loop_philo_one(pthread_t *philo, \
 	t_point *table, t_valuer control, int i)
 {
 	table[i].food = control.av5;
-	if (pthread_create(philo + i, NULL, rotina, &table[i]) != 0)
-		return ;
+	if (table[i].n_philo % 2 == 0)
+	{
+		if (pthread_create(philo + i, NULL, rotina_par, &table[i]) != 0)
+			return ;
+	}
+	else
+	{
+		if (pthread_create(philo + i, NULL, rotina_impar, &table[i]) != 0)
+			return ;
+	}
 }
 
 void	loop_philo(pthread_t *philo, t_point *table, \

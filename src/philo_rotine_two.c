@@ -14,6 +14,8 @@
 
 static	int	rotine_impar(t_point *table)
 {
+	if (pthread_mutex_lock(table->left_fork) == 0)
+		pthread_mutex_unlock(table->left_fork);
 	pthread_mutex_lock(table->reght_fork);
 	if (table->val.x == 1)
 	{
@@ -39,6 +41,8 @@ static	int	rotine_impar(t_point *table)
 
 static	int	rotine_par(t_point *table)
 {
+	if (pthread_mutex_lock(table->reght_fork) == 0)
+		pthread_mutex_unlock(table->reght_fork);
 	pthread_mutex_lock(table->left_fork);
 	if (table->val.x == 1)
 	{
@@ -78,11 +82,11 @@ static	int	rotine_cont(t_point *table)
 		pthread_mutex_unlock(table->left_fork);
 		return (1);
 	}
-	pthread_mutex_unlock(table->reght_fork);
-	pthread_mutex_unlock(table->left_fork);
 	table->time_ut_r = get_time_in_ms();
 	if (table->food > 0)
 		table->food--;
+	pthread_mutex_unlock(table->reght_fork);
+	pthread_mutex_unlock(table->left_fork);
 	if (table->val.x == 1 || table->food == 0)
 		return (1);
 	print_philo("is sleeping", table);
@@ -92,7 +96,7 @@ static	int	rotine_cont(t_point *table)
 	return (0);
 }
 
-void	*rotina(void *arg)
+void	*rotina_par(void *arg)
 {
 	t_point	*table;
 
