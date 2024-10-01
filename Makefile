@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = philo
-CC = cc
+CC = cc -g
 CFLAGS = -Wall -Wextra -Werror
 SOURCE = 	src/main.c 		\
 		src/loop_create.c	\

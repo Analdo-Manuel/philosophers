@@ -23,9 +23,17 @@ size_t	get_time_in_ms(void)
 
 void	ft_sleep(size_t time)
 {
-	size_t	count;
+	_Atomic size_t	count;
 
 	count = get_time_in_ms() + time;
 	while (get_time_in_ms() < count)
 		usleep(100);
+}
+
+void	print_philo(char *str, t_point *table)
+{
+	pthread_mutex_lock(table->val.mutex);
+	printf(BOLD"[%ld] [%ld] %s"RESERT, \
+	get_time_in_ms() - table->time_init, table->pid_philo, str);
+	pthread_mutex_unlock(table->val.mutex);
 }

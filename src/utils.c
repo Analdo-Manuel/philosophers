@@ -65,6 +65,10 @@ void	init_control(t_valuer *control, int ac, char **av)
 	size_t	argv3;
 	size_t	argv4;
 
+	control->mutex = malloc(sizeof(pthread_mutex_t));
+	if (!control->mutex)
+		return ;
+	pthread_mutex_init(control->mutex, NULL);
 	argv1 = ft_atol(av[1]);
 	argv2 = ft_atol(av[2]);
 	argv3 = ft_atol(av[3]);

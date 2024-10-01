@@ -39,6 +39,9 @@ int	main(int ac, char **av)
 	pthread_join(munitor, NULL);
 	loop_join(philo, ft_atol(av[1]));
 	loop_mutex_destroy(forks, ft_atol(av[1]));
+	if (pthread_mutex_destroy(control.mutex) != 0)
+		return (1);
+	free(control.mutex);
 	free(table);
 	free(forks);
 	free(philo);

@@ -20,8 +20,7 @@ static	int	rotine_impar(t_point *table)
 		pthread_mutex_unlock(table->reght_fork);
 		return (1);
 	}
-	printf(BOLD MAGENTA "[%ld] [%ld] has taken right fork" RESERT, \
-	get_time_in_ms() - table->time_init, table->pid_philo);
+	print_philo("has taken right fork", table);
 	if (table->n_philo == 1)
 	{
 		if (philo_one(table) == 1)
@@ -34,8 +33,7 @@ static	int	rotine_impar(t_point *table)
 		pthread_mutex_unlock(table->left_fork);
 		return (1);
 	}
-	printf(BOLD MAGENTA "[%ld] [%ld] has taken left fork" RESERT, \
-	get_time_in_ms() - table->time_init, table->pid_philo);
+	print_philo("has taken left fork", table);
 	return (0);
 }
 
@@ -47,8 +45,7 @@ static	int	rotine_par(t_point *table)
 		pthread_mutex_unlock(table->left_fork);
 		return (1);
 	}
-	printf(BOLD MAGENTA "[%ld] [%ld] has taken left fork" RESERT, \
-	get_time_in_ms() - table->time_init, table->pid_philo);
+	print_philo("has taken left fork", table);
 	pthread_mutex_lock(table->reght_fork);
 	if (table->val.x == 1)
 	{
@@ -56,8 +53,7 @@ static	int	rotine_par(t_point *table)
 		pthread_mutex_unlock(table->reght_fork);
 		return (1);
 	}
-	printf(BOLD MAGENTA "[%ld] [%ld] has taken right fork" RESERT, \
-	get_time_in_ms() - table->time_init, table->pid_philo);
+	print_philo("has taken right fork", table);
 	return (0);
 }
 
@@ -74,8 +70,7 @@ static	int	rotine_fork_two(t_point *table)
 
 static	int	rotine_cont(t_point *table)
 {
-	printf(BOLD GREED"[%ld] [%ld] is eating" RESERT, \
-	get_time_in_ms() - table->time_init, table->pid_philo);
+	print_philo("is eating", table);
 	ft_sleep(table->t_to_eat);
 	if (table->val.x == 1)
 	{
@@ -90,8 +85,7 @@ static	int	rotine_cont(t_point *table)
 		table->food--;
 	if (table->val.x == 1 || table->food == 0)
 		return (1);
-	printf(BOLD CYAN"[%ld] [%ld] is sleeping" RESERT, \
-	get_time_in_ms() - table->time_init, table->pid_philo);
+	print_philo("is sleeping", table);
 	ft_sleep(table->t_to_sleep);
 	if (table->val.x == 1)
 		return (1);
@@ -105,8 +99,7 @@ void	*rotina(void *arg)
 	table = (t_point *)arg;
 	while (1)
 	{
-		printf(BOLD YELLOW"[%ld] [%ld] is thinking" RESERT, \
-		get_time_in_ms() - table->time_init, table->pid_philo);
+		print_philo("is thenking", table);
 		if (table->pid_philo % 2 == 0)
 		{
 			if (rotine_par(table) == 1)

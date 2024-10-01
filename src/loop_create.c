@@ -25,7 +25,8 @@ void	loop_philo_one(pthread_t *philo, \
 	t_point *table, t_valuer control, int i)
 {
 	table[i].food = control.av5;
-	pthread_create(philo + i, NULL, rotina, &table[i]);
+	if (pthread_create(philo + i, NULL, rotina, &table[i]) != 0)
+		return ;
 }
 
 void	loop_philo(pthread_t *philo, t_point *table, \
@@ -62,11 +63,7 @@ void	loop_join(pthread_t *philo, size_t nbr_philo)
 
 	i = 0;
 	while (i < nbr_philo)
-	{
-		if (pthread_join(philo[i], NULL) != 0)
-			perror("Erro ao fazer join na thread do filósofo");
-		i++;
-	}
+		pthread_join(philo[i++], NULL);
 }
 
 void	loop_mutex_destroy(pthread_mutex_t *forks, size_t nbr_philo)
@@ -75,5 +72,8 @@ void	loop_mutex_destroy(pthread_mutex_t *forks, size_t nbr_philo)
 
 	i = 0;
 	while (i < nbr_philo)
-		pthread_mutex_destroy(&forks[i++]);
+	{
+		if (pthread_mutex_destroy(&forks[i++]) != 0)
+			return ;
+	}
 }

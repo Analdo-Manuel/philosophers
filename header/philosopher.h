@@ -32,13 +32,14 @@
 
 typedef struct s_valuer
 {
-	_Atomic int	x;
-	size_t		av1;
-	size_t		av2;
-	size_t		av3;
-	size_t		av4;
-	size_t		av5;
-	int			ac;
+	pthread_mutex_t	*mutex;
+	_Atomic int		x;
+	size_t			av1;
+	size_t			av2;
+	size_t			av3;
+	size_t			av4;
+	size_t			av5;
+	int				ac;
 }	t_valuer;
 
 typedef struct s_point
@@ -70,6 +71,7 @@ pthread_mutex_t *forks, t_valuer control);
 void			loop_join(pthread_t *philo, size_t nbr_philo);
 void			loop_mutex_destroy(pthread_mutex_t *forks, size_t nbr_philo);
 void			init_control(t_valuer *control, int ac, char **av);
+void			print_philo(char *str, t_point *table);
 void			*monitoring(void *arg);
 void			ft_sleep(size_t time);
 void			*rotina(void *arg);

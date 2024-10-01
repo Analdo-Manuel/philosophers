@@ -33,8 +33,7 @@ static
 			usleep(2000);
 			if ((check_time(table[i].time_ut_r)) >= table[i].t_to_die)
 			{				
-				printf(BOLD RED "[%ld] [%ld] died" RESERT, \
-				get_time_in_ms() - table[i].time_init, table[i].pid_philo);
+				print_philo("diad", &table[i]);
 				i = 0;
 				while (i < table[0].n_philo)
 					table[i++].val.x = 1;
